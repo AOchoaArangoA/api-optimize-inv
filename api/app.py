@@ -13,7 +13,7 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
 from fastapi import FastAPI
-from api.routers import optimize, frontier
+from api.routers import optimize, frontier, optimize_live
 
 app = FastAPI(
     title="Portfolio Optimizer API",
@@ -23,6 +23,7 @@ app = FastAPI(
 
 app.include_router(optimize.router)
 app.include_router(frontier.router)
+app.include_router(optimize_live.router)
 
 
 @app.get("/health")
