@@ -1,0 +1,25 @@
+# Core Dependencies
+numpy>=1.24,<3
+pandas>=2.0
+scipy>=1.10
+
+# Optimization & Risk
+cvxpy>=1.4
+osqp>=1.0
+scs>=3.0
+arch>=6.0
+statsmodels>=0.14
+
+# Financial Data & Utils
+yfinance>=0.2
+plotly>=5.0
+
+# Web Application
+streamlit>=1.28
+
+# Optional: Data sources (para data_downloader)
+fredapi>=0.5
+alpaca-py>=0.10
+
+# Azure Storage
+azure-storage-blob>=12.19

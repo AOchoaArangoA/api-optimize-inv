@@ -1,0 +1,16 @@
+# Configuración del servidor API
+server:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true           # solo en desarrollo
+
+# Timeouts del cliente MCP (segundos)
+client:
+  optimize_timeout: 30
+  frontier_timeout: 60
+
+# Parámetros por defecto de la frontera
+frontier_defaults:
+  n_points: 20
+  risk_aversion_min: 0.5
+  risk_aversion_max: 10.0
