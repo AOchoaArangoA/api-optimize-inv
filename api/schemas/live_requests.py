@@ -42,3 +42,29 @@ class OptimizeLiveRequest(BaseModel):
     returns_model: Literal["historical", "capm"] = "historical"
     risk_model: Literal["sample", "shrinkage", "garch"] = "sample"
     constraints: ConstraintsConfig = ConstraintsConfig()
+
+
+class FrontierLiveRequest(BaseModel):
+    """
+    Request para POST /frontier-live.
+    Descarga precios desde Alpaca y calcula la frontera eficiente completa.
+    Combina la descarga automática de /optimize-live con el barrido de /frontier.
+    """
+
+    tickers: List[str] = Field(..., min_length=2, description="Lista de tickers del universo")
+    years: int = Field(1, ge=1, le=10, description="Años de historia a descargar")
+
+    alpaca_api_key: Optional[str] = Field(
+        None, description="Alpaca API Key. Si es None usa ALPACA_API_KEY del entorno"
+    )
+    alpaca_secret_key: Optional[str] = Field(
+        None, description="Alpaca Secret Key. Si es None usa ALPACA_SECRET_KEY del entorno"
+    )
+
+    n_points: int = Field(20, ge=5, le=100, description="Número de puntos en la frontera")
+    risk_aversion_min: float = Field(0.5, gt=0.0)
+    risk_aversion_max: float = Field(10.0, gt=0.0)
+    solver: Literal["cvxpy", "scipy"] = "cvxpy"
+    returns_model: Literal["historical", "capm"] = "historical"
+    risk_model: Literal["sample", "shrinkage", "garch"] = "sample"
+    constraints: ConstraintsConfig = ConstraintsConfig()

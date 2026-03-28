@@ -61,7 +61,7 @@ class AlpacaDataDownloader:
         bars = self.crypto_client.get_crypto_bars(request_params)
         return bars.df
 
-    def fetch_stock_data(self, symbols: List[str], years: int = 5) -> pd.DataFrame:
+    def fetch_stock_data(self, symbols: List[str], years: int = 3) -> pd.DataFrame:
         """
         Descarga datos de acciones para los últimos 'years' años.
         Retorna un diccionario {symbol: DataFrame}.
